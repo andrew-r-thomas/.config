@@ -71,3 +71,13 @@ name = "typescript"
 file-types = ["ts","js"]
 language-server = { command = "deno", args = ["lsp"]}
 config = { deno = { enable = true, lint = true } }
+
+[language-server.astro-ls]
+command = "astro-ls"
+args = ["--stdio"]
+config = {typescript = {tsdk = "/Users/user/.bun/install/global/node_modules/typescript/lib"}, environment = "node"}
+
+[[language]]
+name = "astro"
+auto-format = true
+language-servers = [ "astro-ls" ]
