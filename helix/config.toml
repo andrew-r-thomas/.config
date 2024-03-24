@@ -2,7 +2,7 @@ theme = "solarized_light"
 
 [editor]
 line-number = "relative"
-mouse = false
+mouse = true
 color-modes = true
 true-color = true
 bufferline = "always"
@@ -18,5 +18,5 @@ hidden = false
 git-ignore = true
 
 [editor.statusline]
-left = ["mode", "file-name", "file-type"]
-right = ["diagnostics", "position"]
+left = ["mode", "file-name", "version-control"]
+right = ["workspace-diagnostics", "position", "position-percentage"]
