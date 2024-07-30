@@ -108,36 +108,36 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 vim.api.nvim_create_user_command('Hello', "echo 'oi cunt'", {})
 
--- sync org agenda files
-local org_files = {}
-local org_files_idx = 1
-
-local function search_org_files(dir)
-  local scanning = true
-  local next = vim.uv.fs_scandir(dir)
-  while scanning do
-    if next == nil then
-      scanning = false
-      break
-    else
-      local name, type = vim.uv.fs_scandir_next(next)
-      if name ~= nil and type ~= nil then
-        if type == 'file' and name:sub(-3, -1) == 'org' then
-          org_files[org_files_idx] = dir .. '/' .. name
-          org_files_idx = org_files_idx + 1
-        elseif type == 'directory' then
-          search_org_files(dir .. '/' .. name)
-        end
-      else
-        scanning = false
-        break
-      end
-    end
-  end
-end
-
--- TODO: maybe move this to a command if it gets too slow
-search_org_files '/Users/andrewthomas/pinky'
+-- -- sync org agenda files
+-- local org_files = {}
+-- local org_files_idx = 1
+--
+-- local function search_org_files(dir)
+--   local scanning = true
+--   local next = vim.uv.fs_scandir(dir)
+--   while scanning do
+--     if next == nil then
+--       scanning = false
+--       break
+--     else
+--       local name, type = vim.uv.fs_scandir_next(next)
+--       if name ~= nil and type ~= nil then
+--         if type == 'file' and name:sub(-3, -1) == 'org' then
+--           org_files[org_files_idx] = dir .. '/' .. name
+--           org_files_idx = org_files_idx + 1
+--         elseif type == 'directory' then
+--           search_org_files(dir .. '/' .. name)
+--         end
+--       else
+--         scanning = false
+--         break
+--       end
+--     end
+--   end
+-- end
+--
+-- -- TODO: maybe move this to a command if it gets too slow
+-- search_org_files '/Users/andrewthomas/pinky'
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -727,15 +727,15 @@ require('lazy').setup({
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
   },
 
-  {
-    'nvim-orgmode/orgmode',
-    event = 'VeryLazy',
-    ft = { 'org' },
-    opts = {
-      org_agenda_files = org_files,
-      org_default_notes_file = '~/pinky/inbox.org',
-    },
-  },
+  -- {
+  --   'nvim-orgmode/orgmode',
+  --   event = 'VeryLazy',
+  --   ft = { 'org' },
+  --   opts = {
+  --     org_agenda_files = org_files,
+  --     org_default_notes_file = '~/pinky/inbox.org',
+  --   },
+  -- },
 
   -- Highlight todo, notes, etc in comments
   {
